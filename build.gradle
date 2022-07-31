@@ -1,0 +1,58 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: "io.franzbecker.gradle-lombok"
+
+version = "1.0.0"
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+    options.compilerArgs = ["-parameters"]
+}
+
+repositories {
+    maven {
+        allowInsecureProtocol = true
+        url 'http://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    mavenCentral()
+}
+jar{
+    enabled = true
+}
+lombok {
+    version = "1.18.4"
+    sha256 = ""
+}
+
+dependencies {
+
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework:spring-context-support')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    implementation 'cn.hutool:hutool-all:5.8.0'
+    implementation 'com.alibaba:fastjson:2.0.10'
+    implementation 'net.lightbody.bmp:browsermob-core:2.1.5'
+    implementation 'com.github.ben-manes.caffeine:caffeine:2.9.3'
+}
+buildscript {
+    ext {
+        lib_lombok = 'org.projectlombok:lombok:1.18.4'
+    }
+
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url "http://maven.aliyun.com/nexus/content/groups/public/"
+        }
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.6.3")
+        classpath("io.franzbecker:gradle-lombok:1.14")
+    }
+}
