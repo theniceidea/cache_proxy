@@ -74,18 +74,4 @@ public class CaffeineCacheConfig {
         cacheManager.setCaffeine(caffeine);
         return cacheManager;
     }
-
-//    @Bean("caffeineCacheManager")
-//    public CacheManager cacheManager() {
-//        SimpleCacheManager cacheManager = new SimpleCacheManager();
-//        ArrayList<CaffeineCache> caffeineCaches = new ArrayList<>();
-//        for (CacheEnum cacheEnum : CacheEnum.values()) {
-//            caffeineCaches.add(new CaffeineCache(cacheEnum.name(),
-//                    Caffeine.newBuilder().expireAfterWrite(Duration.ofSeconds(cacheEnum.second))
-//                            .initialCapacity(cacheEnum.initSize)
-//                            .maximumSize(cacheEnum.maxSize).build()));
-//        }
-//        cacheManager.setCaches(caffeineCaches);
-//        return cacheManager;
-//    }
 }
